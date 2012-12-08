@@ -10,6 +10,12 @@ public class Celula {
 	private final ReentrantLock lock = new ReentrantLock();
 	
 
+	public Celula(Point ponto) {
+		super();
+		this.ponto = ponto;
+		this.ocupada=false;
+	}
+
 	public boolean obterAcessoCelula(){
 		if(lock.tryLock()==true){
 			//moverAviao();
