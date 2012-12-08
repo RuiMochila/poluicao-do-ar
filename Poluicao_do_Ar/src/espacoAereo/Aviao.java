@@ -1,4 +1,4 @@
-package controlador;
+package espacoAereo;
 
 public class Aviao extends Thread {
 
