@@ -1,4 +1,4 @@
-package controlador;
+package espacoAereo;
 
 import java.awt.Point;
 import java.util.concurrent.locks.ReentrantLock;
@@ -13,7 +13,7 @@ public class Celula {
 	public boolean obterAcessoCelula(){
 		if(lock.tryLock()==true){
 			//moverAviao();
-			ocupada = true;
+			ocuparCelula();
 			return true;
 		}
 		else{
@@ -25,5 +25,13 @@ public class Celula {
 	@Override
 	public String toString() {
 		return "x= " + ponto.x + "y= " + ponto.y;
+	}
+	
+	public void ocuparCelula(){
+		ocupada=true;
+	}
+	
+	public void desocuparCelula(){
+		ocupada=false;
 	}
 }
