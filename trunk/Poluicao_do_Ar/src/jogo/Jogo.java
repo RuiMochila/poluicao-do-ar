@@ -1,12 +1,14 @@
 package jogo;
 
+import controlador.ControladorJogo;
+
 public class Jogo {
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		ControladorJogo controlador = new ControladorJogo(10, 10);
 
 	}
 
