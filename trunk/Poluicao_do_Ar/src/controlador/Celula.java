@@ -10,4 +10,20 @@ public class Celula {
 	private final ReentrantLock lock = new ReentrantLock();
 	
 
+	public boolean obterAcessoCelula(){
+		if(lock.tryLock()==true){
+			//moverAviao();
+			ocupada = true;
+			return true;
+		}
+		else{
+			//rodarAviao();
+			return false; //o aviao sabe que esta la outro aviao e comeca a rodar
+		}
+	}
+	
+	@Override
+	public String toString() {
+		return "x= " + ponto.x + "y= " + ponto.y;
+	}
 }
