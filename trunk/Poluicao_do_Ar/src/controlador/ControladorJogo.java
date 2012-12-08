@@ -1,7 +1,7 @@
 package controlador;
 
 
-import espacoAereo.EspacoAereo;
+import ceu.EspacoAereo;
 import gui.InterfaceJogo;
 
 public class ControladorJogo {
