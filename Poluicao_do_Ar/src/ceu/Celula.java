@@ -19,6 +19,7 @@ public class Celula {
 		
 	}
 
+
 	public synchronized boolean obterAcessoCelula(ObjetoAereo ocupanteCelula){
 		if(lock.tryLock()==true){
 			this.ocupanteCelula = ocupanteCelula;
@@ -49,5 +50,10 @@ public class Celula {
 	@Override
 	public String toString() {
 		return "x= " + ponto.x + "y= " + ponto.y;
+	}
+	
+
+	public ObjetoAereo getOcupanteCelula() {
+		return ocupanteCelula;
 	}
 }

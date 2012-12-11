@@ -1,28 +1,38 @@
 package controlador;
 
 
+import java.awt.Point;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.LinkedList;
 import java.util.Scanner;
 
+import ceu.Aeroporto;
+import ceu.Aviao;
 import ceu.EspacoAereo;
+import ceu.ObjetoAereo;
+import ceu.TipoObjeto;
 import gui.InterfaceJogo;
 
 public class ControladorJogo {
 	
-	private static final double DIM_CELULAS = 3.0;
+	public static final double dimCelula = 3.0;
 	private int numColunas;
 	private int numLinhas;
 	
+	private LinkedList<Aeroporto> aeroportos;
+	private LinkedList<Aviao> avioes;
+
 	private EspacoAereo espacoAereo;
 	private InterfaceJogo guiGame;
 	
-	public ControladorJogo(int numColunas, int numLinhas) {
-		super();
-		this.numColunas = numColunas;
-		this.numLinhas = numLinhas;
-
-	}
+	
+//	public ControladorJogo(int numColunas, int numLinhas) {
+//		super();
+//		this.numColunas = numColunas;
+//		this.numLinhas = numLinhas;
+//
+//	}
 	
 	public void criarJogoPorFicheiro(){
 		try {
@@ -32,12 +42,41 @@ public class ControladorJogo {
 				numLinhas = ficheiro.nextInt();
 				espacoAereo = new EspacoAereo(numColunas, numLinhas);
 			}
+			while(ficheiro.hasNext()){
+				int x = ficheiro.nextInt();
+				int y = ficheiro.nextInt();
+				Aeroporto aeroporto = new Aeroporto(this, espacoAereo, new Point(x,y));
+				
+			}
+			ficheiro.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
+	
+	public void click(Point ponto){
+		
+		ObjetoAereo objAereo = espacoAereo.getCelula(ponto).getOcupanteCelula();
+		
+		if(objAereo != null){
+			if(objAereo.getTipoObjeto() == TipoObjeto.AVIAO){
+				Aviao aviao = (Aviao) objAereo;
+				// TODO
+			}
+		}
+		
+	}
+	
+	
+	public int getNumColunas() {
+		return numColunas;
+	}
+
+	public int getNumLinhas() {
+		return numLinhas;
+	}
+
 	public void initGui(){
 		guiGame = new InterfaceJogo(this);
 	}
@@ -46,4 +85,11 @@ public class ControladorJogo {
 		guiGame.repaint();
 	}
 	
+	public LinkedList<Aeroporto> getAeroportos() {
+		return aeroportos;
+	}
+
+	public LinkedList<Aviao> getAvioes() {
+		return avioes;
+	}
 }
