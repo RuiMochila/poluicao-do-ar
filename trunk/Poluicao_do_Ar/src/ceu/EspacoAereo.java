@@ -4,14 +4,9 @@ import java.awt.Point;
 
 public class EspacoAereo {
 
-	private int numCelX;
-	private int numCelY;
 	private Celula [][] matriz;
 	
 	public EspacoAereo(int numCelX, int numCelY) {
-		super();
-		this.numCelX = numCelX;
-		this.numCelY = numCelY;
 		matriz = new Celula[numCelX][numCelY];
 		for(int i = 0; i<numCelX; i++){
 			for(int j = 0; j<numCelY; j++){
@@ -20,6 +15,12 @@ public class EspacoAereo {
 				
 			}
 		}
+	}
+	
+	public Celula getCelula(Point ponto){
+		int x = ponto.x;
+		int y = ponto.y;
+		return matriz[x][y];
 	}
 	
 }

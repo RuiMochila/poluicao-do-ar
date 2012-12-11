@@ -2,6 +2,6 @@ package ceu;
 
 public interface ObjetoAereo {
 	
-	public ObjetoAereo getObjetoAereo();
+	public TipoObjeto getTipoObjeto();
 
 }
