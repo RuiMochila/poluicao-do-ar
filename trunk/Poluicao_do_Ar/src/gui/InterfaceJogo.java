@@ -15,6 +15,8 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
+import ceu.Aviao;
+
 import controlador.ControladorJogo;
 
 public class InterfaceJogo extends JFrame {
@@ -54,7 +56,11 @@ public class InterfaceJogo extends JFrame {
 		InterfaceAviao aviaoGrafico;
 		InterfaceAeroporto aeroportoGrafico;
 		
+	
+		
 		public ComponenteJogo() {
+			
+			
 			final double dimCelula = controlador.dimCelula; 
 			int numColunas = controlador.getNumColunas();
 			int numLinhas = controlador.getNumLinhas();

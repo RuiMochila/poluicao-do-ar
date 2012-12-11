@@ -11,7 +11,7 @@ public class InterfaceAviao {
 	private LinkedList<Aviao> avioes;
 	
 	public InterfaceAviao(ControladorJogo controlador) {
-		avioes = controlador.getAvioes();
+		this.avioes = controlador.getAvioes();
 	}
 
 }
