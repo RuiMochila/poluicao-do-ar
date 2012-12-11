@@ -7,13 +7,15 @@ public class Celula {
 	
 	private Point ponto;
 	private boolean ocupada;
-	private final ReentrantLock lock = new ReentrantLock();
+	private final ReentrantLock lock;
 	
 
 	public Celula(Point ponto) {
 		super();
 		this.ponto = ponto;
 		this.ocupada=false;
+		lock = new ReentrantLock();
+		
 	}
 
 	public boolean obterAcessoCelula(){
