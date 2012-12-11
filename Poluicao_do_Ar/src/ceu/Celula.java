@@ -6,6 +6,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class Celula {
 	
 	private Point ponto;
+	private ObjetoAereo ocupanteCelula;
 	private boolean ocupada;
 	private final ReentrantLock lock;
 	
@@ -18,28 +19,35 @@ public class Celula {
 		
 	}
 
-	public boolean obterAcessoCelula(){
+	public synchronized boolean obterAcessoCelula(ObjetoAereo ocupanteCelula){
 		if(lock.tryLock()==true){
-			//moverAviao();
-			ocuparCelula();
+			this.ocupanteCelula = ocupanteCelula;
+			ocupada = true;
 			return true;
 		}
 		else{
-			//rodarAviao();
-			return false; //o aviao sabe que esta la outro aviao e comeca a rodar
+			return false; 
 		}
 	}
+	
+	public synchronized void sairDaCelula(){
+		if(lock.isHeldByCurrentThread()){
+			ocupada = false;
+			lock.unlock();
+			ocupanteCelula = null;
+		}
+		
+		
+	}
+	
+	public boolean celulaOcupada(){
+		return ocupada;
+		
+	}
+
 	
 	@Override
 	public String toString() {
 		return "x= " + ponto.x + "y= " + ponto.y;
-	}
-	
-	public void ocuparCelula(){
-		ocupada=true;
-	}
-	
-	public void desocuparCelula(){
-		ocupada=false;
 	}
 }
