@@ -12,9 +12,14 @@ public class Aviao extends Thread implements ObjetoAereo{
 	}
 	
 	private Point ponto;
+	private boolean visivel = false;
 
 	public Point getPonto() {
 		return ponto;
+	}
+	
+	public boolean estaVisivel(){
+		return visivel;
 	}
 
 }
