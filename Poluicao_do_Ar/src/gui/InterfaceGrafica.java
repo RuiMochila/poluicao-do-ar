@@ -27,8 +27,11 @@ public class InterfaceGrafica extends JFrame {
 	protected ControladorJogo controlador;
 
 	public InterfaceGrafica(ControladorJogo controlador) {
+		this.controlador = controlador;
 		setTitle("Controlador Aereo");
 		setLayout(new BorderLayout());
+		getContentPane().add(new ComponenteJogo(), BorderLayout.CENTER);
+
 
 		JButton start = new JButton("Iniciar");
 		getContentPane().add(start, BorderLayout.SOUTH);
@@ -51,7 +54,8 @@ public class InterfaceGrafica extends JFrame {
 		});
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setResizable(false);
+		setSize(300, 300);
+		//setResizable(false);
 		setVisible(true);
 	}
 
@@ -113,7 +117,7 @@ public class InterfaceGrafica extends JFrame {
 		protected void paintComponent(Graphics g) { 
 			Graphics2D g2 = (Graphics2D) g; 
 
-			g.setColor(Color.BLUE);
+			g.setColor(Color.blue);
 			g.fillRect(0, 0, getWidth(), getHeight());
 
 			desenhaGrelha(g2);
