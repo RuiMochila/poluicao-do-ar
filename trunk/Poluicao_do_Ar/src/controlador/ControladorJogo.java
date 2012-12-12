@@ -12,11 +12,11 @@ import ceu.Aviao;
 import ceu.EspacoAereo;
 import ceu.ObjetoAereo;
 import ceu.TipoObjeto;
-import gui.InterfaceJogo;
+import gui.InterfaceGrafica;
 
 public class ControladorJogo {
 	
-	public static final double dimCelula = 3.0;
+	public static final double dimCelula = 30.0;
 	private int numColunas;
 	private int numLinhas;
 	
@@ -24,7 +24,7 @@ public class ControladorJogo {
 	private LinkedList<Aviao> avioes;
 
 	private EspacoAereo espacoAereo;
-	private InterfaceJogo guiGame;
+	private InterfaceGrafica guiGame;
 	
 	
 //	public ControladorJogo(int numColunas, int numLinhas) {
@@ -78,7 +78,7 @@ public class ControladorJogo {
 	}
 
 	public void initGui(){
-		guiGame = new InterfaceJogo(this);
+		guiGame = new InterfaceGrafica(this);
 	}
 	
 	public void updateGui(){
