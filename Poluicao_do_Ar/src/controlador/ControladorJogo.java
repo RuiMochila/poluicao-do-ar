@@ -82,15 +82,21 @@ public class ControladorJogo {
 		guiGame = new InterfaceGrafica(this);
 	}
 	
+	public void initAeroportos() {
+		for(Aeroporto aeroporto: aeroportos){
+			aeroporto.start();
+		}
+	}
+	
 	public void updateGui(){
 		guiGame.repaint();
 	}
 	
-	public ConcurrentLinkedQueue getAeroportos() {
+	public ConcurrentLinkedQueue<Aeroporto> getAeroportos() {
 		return aeroportos;
 	}
 
-	public ConcurrentLinkedQueue getAvioes() {
+	public ConcurrentLinkedQueue<Aviao> getAvioes() {
 		return avioes;
 	}
 }

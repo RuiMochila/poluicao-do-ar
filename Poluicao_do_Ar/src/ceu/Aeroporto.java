@@ -26,8 +26,12 @@ public class Aeroporto extends Thread implements ObjetoAereo{
 
 	@Override
 	public void run() {
-		controlador.updateGui();
-		// TODO
+		
+			
+			
+		Aviao a = new Aviao(controlador, espaco, new Point(ponto));
+		controlador.getAvioes().add(a);
+
 	}
 
 	@Override
