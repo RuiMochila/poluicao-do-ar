@@ -22,7 +22,7 @@ import ceu.Aviao;
 
 import controlador.ControladorJogo;
 
-public class InterfaceGrafica extends JFrame {
+public class InterfaceGrafica extends JFrame { // o que e que tenho de fazer aqui pqausa desta aviso? nao percebo mt bem D
 
 	protected ControladorJogo controlador;
 
@@ -122,7 +122,7 @@ public class InterfaceGrafica extends JFrame {
 
 			desenhaGrelha(g2);
 			aeroportoGrafico.pintaAeroportos(g);
-			aviaoGrafico.pintaAvioes(g);
+			//aviaoGrafico.pintaAvioes(g);
 
 		}
 		private void desenhaGrelha(Graphics2D g2) {

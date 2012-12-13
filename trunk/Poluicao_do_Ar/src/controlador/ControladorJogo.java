@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import ceu.Aeroporto;
 import ceu.Aviao;
@@ -20,8 +21,8 @@ public class ControladorJogo {
 	private int numColunas;
 	private int numLinhas;
 	
-	private LinkedList<Aeroporto> aeroportos;
-	private LinkedList<Aviao> avioes;
+	private ConcurrentLinkedQueue<Aeroporto> aeroportos;
+	private ConcurrentLinkedQueue<Aviao> avioes;
 
 	private EspacoAereo espacoAereo;
 	private InterfaceGrafica guiGame;
@@ -42,10 +43,17 @@ public class ControladorJogo {
 				numLinhas = ficheiro.nextInt();
 				espacoAereo = new EspacoAereo(numColunas, numLinhas);
 			}
+			
+			aeroportos = new ConcurrentLinkedQueue();
+			avioes = new ConcurrentLinkedQueue();
+			
 			while(ficheiro.hasNext()){
 				int x = ficheiro.nextInt();
 				int y = ficheiro.nextInt();
-				Aeroporto aeroporto = new Aeroporto(this, espacoAereo, new Point(x,y));
+				Point ponto = new Point(x,y);
+				Aeroporto aeroporto = new Aeroporto(this, espacoAereo, ponto);
+				espacoAereo.getCelula(ponto).setAeroporto(aeroporto);
+				aeroportos.add(aeroporto);
 				
 			}
 			ficheiro.close();
@@ -85,11 +93,11 @@ public class ControladorJogo {
 		guiGame.repaint();
 	}
 	
-	public LinkedList<Aeroporto> getAeroportos() {
+	public ConcurrentLinkedQueue getAeroportos() {
 		return aeroportos;
 	}
 
-	public LinkedList<Aviao> getAvioes() {
+	public ConcurrentLinkedQueue getAvioes() {
 		return avioes;
 	}
 }

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.LinkedList;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import controlador.ControladorJogo;
 
@@ -12,7 +13,7 @@ import ceu.Aeroporto;
 public class AeroportoGrafico {
 	
 	private ControladorJogo controlador;
-	private LinkedList<Aeroporto> aeroportos;
+	private ConcurrentLinkedQueue<Aeroporto> aeroportos;
 
 	public AeroportoGrafico(ControladorJogo controlador) {
 		this.aeroportos = controlador.getAeroportos();

@@ -9,7 +9,8 @@ public class Celula {
 	private ObjetoAereo ocupanteCelula;
 	private boolean ocupada;
 	private final ReentrantLock lock;
-	
+	private Aeroporto aeroporto;
+
 
 	public Celula(Point ponto) {
 		super();
@@ -56,4 +57,14 @@ public class Celula {
 	public ObjetoAereo getOcupanteCelula() {
 		return ocupanteCelula;
 	}
+
+	public Aeroporto getAeroporto() { // PERCEBER MELHOR ISTO
+		return aeroporto;
+	}
+
+
+	public void setAeroporto(Aeroporto aeroporto) {
+		this.aeroporto = aeroporto;
+	}
+
 }
