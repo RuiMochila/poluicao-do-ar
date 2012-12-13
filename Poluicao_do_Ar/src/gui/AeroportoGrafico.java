@@ -21,8 +21,8 @@ public class AeroportoGrafico {
 	
 	private void pinta(Graphics g, Aeroporto aeroporto) {
 		Point ponto = aeroporto.getPonto();
-		g.setColor(Color.GRAY);
-		g.fillRect((int)(ponto.x*controlador.dimCelula), (int)(ponto.y*controlador.dimCelula), (int)(controlador.dimCelula), (int)(controlador.dimCelula));
+		g.setColor(new Color(255, 20, 147));
+		g.fillRect((int)(ponto.x*controlador.dimCelula)+1, (int)(ponto.y*controlador.dimCelula)+1, (int)(controlador.dimCelula)-1, (int)(controlador.dimCelula)-1);
 
 	}
 	

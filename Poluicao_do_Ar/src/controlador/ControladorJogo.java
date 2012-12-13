@@ -28,13 +28,6 @@ public class ControladorJogo {
 	private InterfaceGrafica guiGame;
 	
 	
-//	public ControladorJogo(int numColunas, int numLinhas) {
-//		super();
-//		this.numColunas = numColunas;
-//		this.numLinhas = numLinhas;
-//
-//	}
-	
 	public void criarJogoPorFicheiro(){
 		try {
 			Scanner ficheiro = new Scanner(new FileReader("aeroportos.txt"));
@@ -44,8 +37,8 @@ public class ControladorJogo {
 				espacoAereo = new EspacoAereo(numColunas, numLinhas);
 			}
 			
-			aeroportos = new ConcurrentLinkedQueue();
-			avioes = new ConcurrentLinkedQueue();
+			aeroportos = new ConcurrentLinkedQueue<Aeroporto>();
+			avioes = new ConcurrentLinkedQueue<Aviao>();
 			
 			while(ficheiro.hasNext()){
 				int x = ficheiro.nextInt();
