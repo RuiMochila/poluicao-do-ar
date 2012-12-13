@@ -2,6 +2,8 @@ package ceu;
 
 import java.awt.Point;
 
+import controlador.ControladorJogo;
+
 public class Aviao extends Thread implements ObjetoAereo{
 	
 	private static final TipoObjeto tipoObjeto = TipoObjeto.AVIAO;
@@ -10,9 +12,21 @@ public class Aviao extends Thread implements ObjetoAereo{
 	public TipoObjeto getTipoObjeto() {
 		return tipoObjeto;
 	}
-	
+	private ControladorJogo controlador;
+	private EspacoAereo espaco;
 	private Point ponto;
-	private boolean visivel = false;
+	private Point proxPonto;
+	private int rotacao;
+	private boolean visivel = true;
+
+
+
+	public Aviao(ControladorJogo controlador, EspacoAereo espaco, Point ponto) {
+		super();
+		this.controlador = controlador;
+		this.espaco = espaco;
+		this.ponto = ponto;
+	}
 
 	public Point getPonto() {
 		return ponto;
@@ -21,5 +35,26 @@ public class Aviao extends Thread implements ObjetoAereo{
 	public boolean estaVisivel(){
 		return visivel;
 	}
+	
+	public void direcaoRotacao(){
+		if(proxPonto.x > ponto.x){
+			rotacao = 90;
+		}
+		if(ponto.x > proxPonto.x){
+			rotacao = 270;
+		}
+		if(proxPonto.y > ponto.y){
+			rotacao = 180;
+		}
+		if(ponto.y > proxPonto.y){
+			rotacao = 0;
+		}
+	}
+
+	public int getRotacao() {
+		return rotacao;
+	}
+	
+	
 
 }

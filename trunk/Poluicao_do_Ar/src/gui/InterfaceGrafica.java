@@ -26,7 +26,7 @@ public class InterfaceGrafica extends JFrame { // o que e que tenho de fazer aqu
 
 	protected ControladorJogo controlador;
 
-	public InterfaceGrafica(ControladorJogo controlador) {
+	public InterfaceGrafica(final ControladorJogo controlador) {
 		this.controlador = controlador;
 		setTitle("Controlador Aereo");
 		setLayout(new BorderLayout());
@@ -41,7 +41,7 @@ public class InterfaceGrafica extends JFrame { // o que e que tenho de fazer aqu
 			public void actionPerformed(ActionEvent e) {
 				JButton aux = (JButton)e.getSource();
 				if(aux.getText() == "Iniciar"){
-					//iniciar o jogo
+					controlador.initAeroportos();
 					aux.setText("Fechar");
 				}
 				else{
@@ -122,7 +122,7 @@ public class InterfaceGrafica extends JFrame { // o que e que tenho de fazer aqu
 
 			desenhaGrelha(g2);
 			aeroportoGrafico.pintaAeroportos(g);
-			//aviaoGrafico.pintaAvioes(g);
+			aviaoGrafico.pintaAvioes(g);
 
 		}
 		private void desenhaGrelha(Graphics2D g2) {

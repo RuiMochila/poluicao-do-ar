@@ -1,21 +1,18 @@
 package gui;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.Point;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.LinkedList;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import javax.imageio.ImageIO;
 
 import controlador.ControladorJogo;
-
-import ceu.Aeroporto;
 import ceu.Aviao;
 
 public class AviaoGrafico {
@@ -24,7 +21,8 @@ public class AviaoGrafico {
 	private ConcurrentLinkedQueue<Aviao> avioes;
 
 	public AviaoGrafico(ControladorJogo controlador) {
-		this.avioes = controlador.getAvioes();
+		avioes = controlador.getAvioes();
+		this.controlador = controlador;
 	}
 
 	private void pinta(Graphics g, Aviao aviao) {
@@ -40,11 +38,16 @@ public class AviaoGrafico {
 
 		try {
 			Point ponto = aviao.getPonto();
-			double dimCelula = controlador.dimCelula;
+			double dimCelula = ControladorJogo.dimCelula; 
 			BufferedImage imagem;
 			imagem = ImageIO.read(new File("imagens/aviao.png"));
 			
-			//continuar metodo
+			double centroImagemX = imagem.getWidth() / 2; 
+			double centroImagemY = imagem.getHeight() / 2;
+			AffineTransform tx = AffineTransform.getRotateInstance(Math.toRadians(aviao.getRotacao()), centroImagemX, centroImagemY);
+			AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+			
+			g2.drawImage(op.filter(imagem, null), (int)(ponto.x * dimCelula), (int)(ponto.y*dimCelula), null);
 		} catch (IOException e) {
 
 			e.printStackTrace();
