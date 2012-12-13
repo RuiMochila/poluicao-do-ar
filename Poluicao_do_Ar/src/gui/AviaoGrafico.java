@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import javax.imageio.ImageIO;
 
@@ -20,7 +21,7 @@ import ceu.Aviao;
 public class AviaoGrafico {
 
 	private ControladorJogo controlador;
-	private LinkedList<Aviao> avioes;
+	private ConcurrentLinkedQueue<Aviao> avioes;
 
 	public AviaoGrafico(ControladorJogo controlador) {
 		this.avioes = controlador.getAvioes();
@@ -42,6 +43,8 @@ public class AviaoGrafico {
 			double dimCelula = controlador.dimCelula;
 			BufferedImage imagem;
 			imagem = ImageIO.read(new File("imagens/aviao.png"));
+			
+			//continuar metodo
 		} catch (IOException e) {
 
 			e.printStackTrace();
