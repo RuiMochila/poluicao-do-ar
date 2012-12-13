@@ -54,8 +54,8 @@ public class InterfaceGrafica extends JFrame { // o que e que tenho de fazer aqu
 		});
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(300, 300);
-		//setResizable(false);
+		pack();
+		setResizable(false);
 		setVisible(true);
 	}
 
@@ -117,7 +117,7 @@ public class InterfaceGrafica extends JFrame { // o que e que tenho de fazer aqu
 		protected void paintComponent(Graphics g) { 
 			Graphics2D g2 = (Graphics2D) g; 
 
-			g.setColor(Color.blue);
+			g.setColor(new Color(135, 206, 235));
 			g.fillRect(0, 0, getWidth(), getHeight());
 
 			desenhaGrelha(g2);

@@ -9,6 +9,7 @@ public class Jogo {
 	 */
 	public static void main(String[] args) {
 		ControladorJogo controlador = new ControladorJogo();
+		controlador.criarJogoPorFicheiro();
 		controlador.initGui();
 
 	}
