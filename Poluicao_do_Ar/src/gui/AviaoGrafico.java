@@ -47,7 +47,7 @@ public class AviaoGrafico {
 			AffineTransform tx = AffineTransform.getRotateInstance(Math.toRadians(aviao.getRotacao()), centroImagemX, centroImagemY);
 			AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
 			
-			g2.drawImage(op.filter(imagem, null), (int)(ponto.x * dimCelula), (int)(ponto.y*dimCelula), null);
+			g2.drawImage(op.filter(imagem, null), (int)(ponto.x * dimCelula)+2, (int)(ponto.y*dimCelula)+2, null);
 		} catch (IOException e) {
 
 			e.printStackTrace();
