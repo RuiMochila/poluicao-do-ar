@@ -6,22 +6,20 @@ import java.util.concurrent.locks.ReentrantLock;
 public class Celula {
 	
 	private Point ponto;
-	private ObjetoAereo ocupanteCelula;
+	private Aviao ocupanteCelula;
 	private boolean ocupada;
 	private final ReentrantLock lock;
 	private Aeroporto aeroporto;
-
 
 	public Celula(Point ponto) {
 		super();
 		this.ponto = ponto;
 		this.ocupada=false;
 		lock = new ReentrantLock();
-		
 	}
 
 
-	public synchronized boolean obterAcessoCelula(ObjetoAereo ocupanteCelula){
+	public synchronized boolean obterAcessoCelula(Aviao ocupanteCelula){
 		if(lock.tryLock()==true){
 			this.ocupanteCelula = ocupanteCelula;
 			ocupada = true;
@@ -31,22 +29,20 @@ public class Celula {
 			return false; 
 		}
 	}
-	
+	/**
+	 * 
+	 */
 	public synchronized void sairDaCelula(){
 		if(lock.isHeldByCurrentThread()){
 			ocupada = false;
 			lock.unlock();
 			ocupanteCelula = null;
 		}
-		
-		
 	}
 	
 	public boolean celulaOcupada(){
-		return ocupada;
-		
+		return ocupada;	
 	}
-
 	
 	@Override
 	public String toString() {
@@ -54,17 +50,21 @@ public class Celula {
 	}
 	
 
-	public ObjetoAereo getOcupanteCelula() {
-		return ocupanteCelula;
-	}
-
-	public Aeroporto getAeroporto() { // PERCEBER MELHOR ISTO
+	public Aeroporto getAeroporto() { 
 		return aeroporto;
 	}
 
 
 	public void setAeroporto(Aeroporto aeroporto) {
 		this.aeroporto = aeroporto;
+	}
+	
+	public Aviao getOcupanteCelula() {
+		return ocupanteCelula;
+	}
+	
+	public Point getPonto() {
+		return ponto;
 	}
 
 }
