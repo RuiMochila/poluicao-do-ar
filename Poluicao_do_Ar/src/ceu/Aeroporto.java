@@ -38,7 +38,6 @@ public class Aeroporto extends Thread{
 				lancaAviao();
 				avioesPorLancar.decrementAndGet();	
 			}
-			
 		}
 	}
 
@@ -58,13 +57,10 @@ public class Aeroporto extends Thread{
 
 			Aviao aviao = new Aviao(controlador, espaco, new Point(pontoAeroporto));
 			aviao.setDestino(pontoDestino);
-			//abastece e saltos ate destino
+			aviao.abastece(aviao.obtemCombustivelParaDestino());
 			controlador.getAvioes().add(aviao);
 			aviao.start();
-		
 		}
-		
-		
 	}
 
 	public void aterraAviao() {
