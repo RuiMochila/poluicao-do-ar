@@ -40,8 +40,6 @@ public class Aeroporto extends Thread{
 			}
 			
 		}
-		
-		
 	}
 
 	private void lancaAviao() { // cria 1aviao e lanca o
