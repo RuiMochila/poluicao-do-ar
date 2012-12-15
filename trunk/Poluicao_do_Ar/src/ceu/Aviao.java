@@ -10,6 +10,7 @@ public class Aviao extends Thread {
 
 	private static final int CONSUMO_COMBUSTIVEL = 10;
 	private static final long SLEEP_TIME = 1000;
+	private static final double RESERVA = 0.20;
 	private ControladorJogo controlador;
 	private EspacoAereo espaco;
 	private Point ponto;
@@ -18,6 +19,7 @@ public class Aviao extends Thread {
 	private int rotacao;
 	private boolean visivel = false;
 
+	private int combustivelInicial;
 	private int combustivelActual;
 	private boolean aviaoEmPausa = false;
 
@@ -58,7 +60,6 @@ public class Aviao extends Thread {
 							chegouAoDestino();
 						}
 					}
-
 				}
 				if(!chegouDestino){
 					combustivelActual -= CONSUMO_COMBUSTIVEL;
@@ -70,7 +71,6 @@ public class Aviao extends Thread {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	public void setDestino(Point pontoDestino) {
@@ -195,7 +195,17 @@ public class Aviao extends Thread {
 	public int getRotacao() {
 		return rotacao;
 	}
-
-
+	
+	public void abastece(int combustivelNecessarioParaViajar) {
+		combustivelInicial = (int) (combustivelNecessarioParaViajar * (1 + RESERVA) * CONSUMO_COMBUSTIVEL);
+		combustivelActual = combustivelInicial; 
+	}
+	
+	public int obtemCombustivelParaDestino(){ // ve quantas celulas tem de viajar ate o destino
+		if(trajecto != null){
+			return trajecto.size();
+		}
+		return 0;
+	}
 
 }
