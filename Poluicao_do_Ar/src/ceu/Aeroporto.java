@@ -7,9 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import controlador.ControladorJogo;
 
-public class Aeroporto extends Thread implements ObjetoAereo{
-	
-	private static final TipoObjeto tipoObjeto = TipoObjeto.AEROPORTO;
+public class Aeroporto extends Thread{
 	
 	private ControladorJogo controlador;
 	private EspacoAereo espaco;
@@ -61,9 +59,9 @@ public class Aeroporto extends Thread implements ObjetoAereo{
 			Point pontoDestino = copiaAeroportos.get(i).getPonto(); //ponto do aeroporto escolhido aleatoriamente da copia da lista
 
 			Aviao aviao = new Aviao(controlador, espaco, new Point(pontoAeroporto));
-			controlador.getAvioes().add(aviao);
-			//setDestino
+			aviao.setDestino(pontoDestino);
 			//abastece e saltos ate destino
+			controlador.getAvioes().add(aviao);
 			aviao.start();
 		
 		}
@@ -71,9 +69,10 @@ public class Aeroporto extends Thread implements ObjetoAereo{
 		
 	}
 
-	@Override
-	public TipoObjeto getTipoObjeto() {
-		return tipoObjeto;
+	public void aterraAviao() {
+		this.avioesPorLancar.incrementAndGet(); // se um aviao aterra volta a ser lancado e tem combustivel novamente
+		
 	}
+
 
 }
