@@ -28,7 +28,6 @@ import controlador.ControladorPontuacao;
 public class InterfaceGrafica extends JFrame { // o que e que tenho de fazer aqui pqausa desta aviso? nao percebo mt bem D
 
 	protected ControladorJogo controlador; //pq e que e protected?
-	private ControladorPontuacao pontuacao;
 
 	public InterfaceGrafica(final ControladorJogo controlador) {
 		this.controlador = controlador;
@@ -49,8 +48,8 @@ public class InterfaceGrafica extends JFrame { // o que e que tenho de fazer aqu
 				}
 				else{
 					controlador.terminaJogo();
-					System.out.println("Pontuacao do jogo: " + pontuacao.getPontos());
-					JOptionPane.showMessageDialog (null, "Pontuacao do jogo: " + pontuacao.getPontos(), "Pontuacao", JOptionPane.INFORMATION_MESSAGE);
+					System.out.println("Pontuacao do jogo: " + controlador.getPontuacao().getPontos());
+					JOptionPane.showMessageDialog (null, "Pontuacao do jogo: " + controlador.getPontuacao().getPontos(), "Pontuacao", JOptionPane.INFORMATION_MESSAGE);
 					controlador.terminaJogo();
 					
 				}
@@ -66,8 +65,6 @@ public class InterfaceGrafica extends JFrame { // o que e que tenho de fazer aqu
 	private class ComponenteJogo extends JComponent{
 		AviaoGrafico aviaoGrafico;
 		AeroportoGrafico aeroportoGrafico;
-
-
 
 		public ComponenteJogo() {
 
