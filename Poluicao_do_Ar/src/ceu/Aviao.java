@@ -178,6 +178,14 @@ public class Aviao extends Thread {
 	public boolean estaVisivel(){
 		return visivel;
 	}
+	
+	public boolean estaEmPausa(){
+		return aviaoEmPausa;
+	}
+	
+	public void acabaPausa(){
+		aviaoEmPausa = false;
+	}
 
 	public void direcaoRotacao(){
 		if(proxPonto.x > pontoAviao.x){
