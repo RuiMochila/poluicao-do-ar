@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -21,8 +22,9 @@ public class InterfaceInicial extends JFrame{
 	public InterfaceInicial(){
 		setTitle("Controlador Aereo");
 
-		setSize(500, 500);
+		setSize(500, 200);
 		setLayout(new BorderLayout());
+		setBackground(new Color(154,192,205));
 		
 		JButton botaoTeste = new JButton("Situação de teste");
 		botaoTeste.addActionListener(new ActionListener() {
@@ -66,15 +68,16 @@ public class InterfaceInicial extends JFrame{
 		painelBotoes.add(botaoFicheiro);
 		getContentPane().add(painelBotoes, BorderLayout.NORTH);
 
-		JPanel painelAluno = new JPanel(new FlowLayout());
+		JPanel painelAluno = new JPanel(new GridLayout(3,1));
 		JLabel nome = new JLabel("Debora Goncalves");
 		JLabel numero = new JLabel("33957");
 		JLabel curso = new JLabel("Informatica e Gestao de Empresas");
 		getContentPane().add(painelAluno, BorderLayout.CENTER);
 		
-		getContentPane().add(nome);
-		getContentPane().add(numero);
-		getContentPane().add(curso);
+		painelAluno.add(nome);
+		painelAluno.add(numero);
+		painelAluno.add(curso);
+		
 		
 			
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
