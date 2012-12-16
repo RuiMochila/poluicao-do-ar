@@ -11,7 +11,7 @@ public class Aviao extends Thread {
 
 	private static final int CONSUMO_COMBUSTIVEL = 10;
 	private static final long SLEEP_TIME = 1000;
-	public static final double RESERVA = 0.20;
+	public static final double RESERVA = 0.30;
 	
 	private ControladorJogo controlador;
 	private ControladorPontuacao pontuacao;
@@ -141,7 +141,7 @@ public class Aviao extends Thread {
 	private void termina() {
 		// ou chegou ao destino ou se despenhou
 		if(!chegouDestino){
-			pontuacao.retiraPontos(100);
+			controlador.getPontuacao().retiraPontos(100);
 		}
 		Celula celula = this.espaco.getCelula(pontoAviao);
 		celula.sairDaCelula();
@@ -158,9 +158,8 @@ public class Aviao extends Thread {
 		Aeroporto aeroporto = espaco.getCelula(pontoAviao).getAeroporto(); // se for preciso mete se um if para nao dar erro
 		aeroporto.aterraAviao();
 
-		pontuacao.adicionaPontos(10);
-		pontuacao.adicionaPontos(this.combustivelActual/CONSUMO_COMBUSTIVEL); //e preciso converter para int?
-
+		controlador.getPontuacao().adicionaPontos(10);
+		controlador.getPontuacao().adicionaPontos(this.combustivelActual/CONSUMO_COMBUSTIVEL); //e preciso converter para int?
 	}
 
 	private void tentaDescolar() throws InterruptedException {
@@ -232,7 +231,7 @@ public class Aviao extends Thread {
 	public void setDestinoIntermedio(Point pontoIntermedio){
 		this.pontoIntermedio = pontoIntermedio;
 		destinoIntermedio = true;
-		pontuacao.retiraPontos(1);
+		controlador.getPontuacao().retiraPontos(1);
 		setDestino(pontoIntermedio);	
 	}
 	

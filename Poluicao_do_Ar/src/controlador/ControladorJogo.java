@@ -23,6 +23,9 @@ public class ControladorJogo {
 	private ConcurrentLinkedQueue<Aeroporto> aeroportos;
 	private ConcurrentLinkedQueue<Aviao> avioes;
 
+	private ControladorPontuacao pontuacao;
+
+
 	private EspacoAereo espacoAereo;
 	private InterfaceGrafica guiGame;
 
@@ -39,7 +42,7 @@ public class ControladorJogo {
 
 			aeroportos = new ConcurrentLinkedQueue<Aeroporto>();
 			avioes = new ConcurrentLinkedQueue<Aviao>();
-			ControladorPontuacao pontuacao = new ControladorPontuacao();
+			pontuacao = new ControladorPontuacao();
 
 			while(ficheiro.hasNext()){
 				int x = ficheiro.nextInt();
@@ -67,7 +70,7 @@ public class ControladorJogo {
 		
 		aeroportos = new ConcurrentLinkedQueue<Aeroporto>();
 		avioes = new ConcurrentLinkedQueue<Aviao>();
-		ControladorPontuacao pontuacao = new ControladorPontuacao();
+		pontuacao = new ControladorPontuacao();
 
 		for(int i = 0; i < numAeroportos; i++){
 			Random r = new Random();
@@ -115,7 +118,7 @@ public class ControladorJogo {
 			}
 			aeroportos = new ConcurrentLinkedQueue<Aeroporto>();
 			avioes = new ConcurrentLinkedQueue<Aviao>();
-			ControladorPontuacao pontuacao = new ControladorPontuacao();
+			pontuacao = new ControladorPontuacao();
 			
 			while(ficheiro.hasNext()){
 				int x = ficheiro.nextInt();
@@ -197,5 +200,9 @@ public class ControladorJogo {
 		for(Aviao aviao: avioes){
 			aviao.interrupt();
 		}	
+	}
+	
+	public ControladorPontuacao getPontuacao() {
+		return pontuacao;
 	}
 }

@@ -49,7 +49,10 @@ public class InterfaceGrafica extends JFrame { // o que e que tenho de fazer aqu
 				}
 				else{
 					controlador.terminaJogo();
+					System.out.println("Pontuacao do jogo: " + pontuacao.getPontos());
 					JOptionPane.showMessageDialog (null, "Pontuacao do jogo: " + pontuacao.getPontos(), "Pontuacao", JOptionPane.INFORMATION_MESSAGE);
+					controlador.terminaJogo();
+					
 				}
 			}
 		});
