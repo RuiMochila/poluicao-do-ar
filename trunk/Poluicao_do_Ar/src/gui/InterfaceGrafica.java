@@ -13,26 +13,29 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.jar.JarOutputStream;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import ceu.Aviao;
 
 import controlador.ControladorJogo;
+import controlador.ControladorPontuacao;
 
 public class InterfaceGrafica extends JFrame { // o que e que tenho de fazer aqui pqausa desta aviso? nao percebo mt bem D
 
-	protected ControladorJogo controlador;
+	protected ControladorJogo controlador; //pq e que e protected?
+	private ControladorPontuacao pontuacao;
 
 	public InterfaceGrafica(final ControladorJogo controlador) {
 		this.controlador = controlador;
 		setTitle("Controlador Aereo");
 		setLayout(new BorderLayout());
 		getContentPane().add(new ComponenteJogo(), BorderLayout.CENTER);
-
-
+		
 		JButton start = new JButton("Iniciar");
 		getContentPane().add(start, BorderLayout.SOUTH);
 		start.addActionListener(new ActionListener() {
@@ -46,6 +49,7 @@ public class InterfaceGrafica extends JFrame { // o que e que tenho de fazer aqu
 				}
 				else{
 					controlador.terminaJogo();
+					JOptionPane.showMessageDialog (null, "Pontuacao do jogo: " + pontuacao.getPontos(), "Pontuacao", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		});
