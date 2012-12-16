@@ -78,6 +78,8 @@ public class ControladorJogo {
 					if(!(aeroporto.getPonto().x == x && aeroporto.getPonto().y == y)){
 						celulaOcupada = false;
 					}
+					
+					//eu nao sei pq preciso de criar uma copia da lista de avioes!
 					for(Aeroporto aeroporto2: aeroportos){
 						if(!(aeroporto2.getPonto().x == x - 1 ||
 								aeroporto2.getPonto().x == x + 1 ||
