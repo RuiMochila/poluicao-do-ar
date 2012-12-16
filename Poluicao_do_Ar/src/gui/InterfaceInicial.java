@@ -22,11 +22,11 @@ public class InterfaceInicial extends JFrame{
 	public InterfaceInicial(){
 		setTitle("Controlador Aereo");
 
-		setSize(500, 200);
+		setSize(500, 150);
 		setLayout(new BorderLayout());
 		setBackground(new Color(154,192,205));
 		
-		JButton botaoTeste = new JButton("Situação de teste");
+		JButton botaoTeste = new JButton("Situacao de teste");
 		botaoTeste.addActionListener(new ActionListener() {
 			
 			@Override
