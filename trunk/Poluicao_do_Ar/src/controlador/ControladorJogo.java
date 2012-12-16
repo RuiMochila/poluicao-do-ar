@@ -2,6 +2,7 @@ package controlador;
 
 
 import java.awt.Point;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Random;
@@ -25,14 +26,15 @@ public class ControladorJogo {
 	private EspacoAereo espacoAereo;
 	private InterfaceGrafica guiGame;
 
+	private Aviao aviaoParado;
 
 	public void criarJogoPorFicheiro(){
 		try {
 			Scanner ficheiro = new Scanner(new FileReader("aeroportos.txt"));
 			if(ficheiro.hasNext()){
-				numColunas = ficheiro.nextInt();
-				numLinhas = ficheiro.nextInt();
-				espacoAereo = new EspacoAereo(numColunas, numLinhas);
+				this.numColunas = ficheiro.nextInt();
+				this.numLinhas = ficheiro.nextInt();
+				this.espacoAereo = new EspacoAereo(numColunas, numLinhas);
 			}
 
 			aeroportos = new ConcurrentLinkedQueue<Aeroporto>();
@@ -41,9 +43,9 @@ public class ControladorJogo {
 			while(ficheiro.hasNext()){
 				int x = ficheiro.nextInt();
 				int y = ficheiro.nextInt();
-				Point ponto = new Point(x,y);
-				Aeroporto aeroporto = new Aeroporto(this, espacoAereo, ponto);
-				espacoAereo.getCelula(ponto).setAeroporto(aeroporto);
+				Point novoPonto = new Point(x,y);
+				Aeroporto aeroporto = new Aeroporto(this, espacoAereo, novoPonto);
+				espacoAereo.getCelula(novoPonto).setAeroporto(aeroporto);
 				aeroportos.add(aeroporto);
 
 			}
@@ -79,8 +81,8 @@ public class ControladorJogo {
 						celulaOcupada = false;
 					}
 					
-					//eu nao sei pq preciso de criar uma copia da lista de avioes!
-					for(Aeroporto aeroporto2: aeroportos){
+					ConcurrentLinkedQueue<Aeroporto> copiaAeroportos = new ConcurrentLinkedQueue<Aeroporto>(aeroportos); 
+					for(Aeroporto aeroporto2: copiaAeroportos){
 						if(!(aeroporto2.getPonto().x == x - 1 ||
 								aeroporto2.getPonto().x == x + 1 ||
 								aeroporto2.getPonto().x == y - 1 ||
@@ -98,16 +100,55 @@ public class ControladorJogo {
 	}
 
 	public void criarJogoTeste(){
-		
+		try {
+			Scanner ficheiro = new Scanner(new FileReader("situacaoTeste.txt"));
+			if(ficheiro.hasNext()){
+				this.numColunas = ficheiro.nextInt();
+				this.numLinhas = ficheiro.nextInt();
+				this.espacoAereo = new EspacoAereo(numColunas, numLinhas);
+			}
+			aeroportos = new ConcurrentLinkedQueue<Aeroporto>();
+			avioes = new ConcurrentLinkedQueue<Aviao>();
+			
+			while(ficheiro.hasNext()){
+				int x = ficheiro.nextInt();
+				int y = ficheiro.nextInt();
+				Point novoPonto = new Point(x,y);
+				Aeroporto aeroporto = new Aeroporto(this, espacoAereo, novoPonto);
+				espacoAereo.getCelula(novoPonto).setAeroporto(aeroporto);
+				aeroportos.add(aeroporto);
+			}
+			ficheiro.close();
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void click(Point ponto){
 
 		Aviao aviao = espacoAereo.getCelula(ponto).getOcupanteCelula();
 
-		if(aviao != null){
-
-			// TODO
+		if(aviao != null){ // se esta um aviao no ponto clicado
+			if(aviao.estaEsperaComando()){ // no caso em que foi clicado no aviao errado
+				aviao.acabaPausa();
+				aviaoParado = null;
+			}
+			else{
+				if(aviaoParado != null){ // tirar da pausa o aviao que estava (se houver)
+					aviaoParado.acabaPausa();
+					aviaoParado = null; //?
+				}
+				aviao.comecaPausa();
+				aviaoParado = aviao;
+			}
+		}
+		else{ // se clica num ponto vazio
+			if(aviaoParado != null){ // e se ha algum aviao a espera
+				aviaoParado.setDestinoIntermedio(ponto);
+				aviaoParado.acabaPausa(); // depois de ter dito o destino intermedio deixa de estar parado e passa a ser null
+				aviaoParado = null;
+			}
 		}
 	}
 
