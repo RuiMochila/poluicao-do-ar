@@ -5,19 +5,22 @@ import java.util.LinkedList;
 import java.util.Random;
 
 import controlador.ControladorJogo;
+import controlador.ControladorPontuacao;
 
 public class Aviao extends Thread {
 
 	private static final int CONSUMO_COMBUSTIVEL = 10;
 	private static final long SLEEP_TIME = 1000;
 	public static final double RESERVA = 0.20;
+	
 	private ControladorJogo controlador;
+	private ControladorPontuacao pontuacao;
 	private EspacoAereo espaco;
+	
 	private Point pontoIntermedio;
 	private Point pontoAviao;
 	private Point proxPonto;
 	private Celula proximaCelula;
-
 
 	private int rotacao;
 	private boolean visivel = false;
@@ -138,7 +141,7 @@ public class Aviao extends Thread {
 	private void termina() {
 		// ou chegou ao destino ou se despenhou
 		if(!chegouDestino){
-			// ver pontuacao
+			pontuacao.retiraPontos(100);
 		}
 		Celula celula = this.espaco.getCelula(pontoAviao);
 		celula.sairDaCelula();
@@ -155,7 +158,8 @@ public class Aviao extends Thread {
 		Aeroporto aeroporto = espaco.getCelula(pontoAviao).getAeroporto(); // se for preciso mete se um if para nao dar erro
 		aeroporto.aterraAviao();
 
-		//falta tratar da pontuacao
+		pontuacao.adicionaPontos(10);
+		pontuacao.adicionaPontos(this.combustivelActual/CONSUMO_COMBUSTIVEL); //e preciso converter para int?
 
 	}
 
@@ -228,7 +232,7 @@ public class Aviao extends Thread {
 	public void setDestinoIntermedio(Point pontoIntermedio){
 		this.pontoIntermedio = pontoIntermedio;
 		destinoIntermedio = true;
-		//ver pontuacao;
+		pontuacao.retiraPontos(1);
 		setDestino(pontoIntermedio);	
 	}
 	
@@ -238,5 +242,13 @@ public class Aviao extends Thread {
 
 	public int getCombustivelInicial() {
 		return combustivelInicial;
+	}
+	
+	public boolean estaEsperaDestinoIntermedio(){
+		return destinoIntermedio;
+	}
+	
+	public Point getPontoIntermedio() {
+		return pontoIntermedio;
 	}
 }
