@@ -45,11 +45,8 @@ public class InterfaceGrafica extends JFrame { // o que e que tenho de fazer aqu
 					aux.setText("Fechar");
 				}
 				else{
-					//fechar o jogo
-					aux.setText("Iniciar");
-
+					controlador.terminaJogo();
 				}
-
 			}
 		});
 

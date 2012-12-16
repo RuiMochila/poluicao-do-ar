@@ -13,7 +13,7 @@ public class Aviao extends Thread {
 	private static final double RESERVA = 0.20;
 	private ControladorJogo controlador;
 	private EspacoAereo espaco;
-	private Point ponto;
+	private Point pontoAviao;
 	private Point proxPonto;
 	private Celula proximaCelula;
 	private int rotacao;
@@ -32,7 +32,7 @@ public class Aviao extends Thread {
 		super();
 		this.controlador = controlador;
 		this.espaco = espaco;
-		this.ponto = ponto;
+		this.pontoAviao = ponto;
 		trajecto = new LinkedList<Celula>();    
 	}
 
@@ -42,7 +42,9 @@ public class Aviao extends Thread {
 			esperaTempoAleatorio();
 			tentaDescolar();
 			this.visivel = true;
+			
 
+			proxPonto = (Point) pontoAviao.clone(); //preciso de ter um proxPonto sempre atras de mim e nao quero alterar o valor do ponto
 			while(!chegouDestino  && combustivelActual > 0){
 				controlador.updateGui();
 
@@ -77,7 +79,7 @@ public class Aviao extends Thread {
 		if(!destinoIntermedio){
 			destinoFinal = pontoDestino;
 		}
-		Point proximaCelulaTrajecto = (Point)ponto.clone(); //tem de ser um clone senao o ponto estava sempre a alterar neste processo de escolher o trajecto
+		Point proximaCelulaTrajecto = (Point)pontoAviao.clone(); //tem de ser um clone senao o ponto estava sempre a alterar neste processo de escolher o trajecto
 		trajecto.clear(); 
 		while(espaco.getCelula(pontoDestino) != espaco.getCelula(proximaCelulaTrajecto)){ //ou ao contrario
 			int dx = pontoDestino.x - proximaCelulaTrajecto.x;
@@ -105,8 +107,8 @@ public class Aviao extends Thread {
 	private void tentaIrProximaCelula() {
 		// se conseguir o acesso para a proxima celula, movo me para la 
 		if(proximaCelula.obterAcessoCelula(this)){
-			Celula celulaAnterior = espaco.getCelula(ponto);
-			this.ponto = proximaCelula.getPonto();
+			Celula celulaAnterior = espaco.getCelula(pontoAviao);
+			this.pontoAviao = proximaCelula.getPonto();
 			celulaAnterior.sairDaCelula();
 		}
 		else{
@@ -122,7 +124,7 @@ public class Aviao extends Thread {
 		// se estamos na celula onde queremos estar e queremos ir para a proxima
 		// ou se ainda nao estamos onde queriamos estar mas a celula para onde queriamos ir esta ocupada e temos um destino intermedio
 		// senao tivessemos o destino intermedio passariamos por cima do aviao e iriamos para a celula a seguir
-		if(ponto.equals(proxPonto) || (!ponto.equals(proxPonto) && proximaCelula.celulaOcupada() && destinoIntermedio)){
+		if(pontoAviao.equals(proxPonto) || (!pontoAviao.equals(proxPonto) && proximaCelula.celulaOcupada() && destinoIntermedio)){
 			proximaCelula = trajecto.pollFirst();
 			// se for preciso por if para ver se a proximaCelula esta a null
 			proxPonto = proximaCelula.getPonto();
@@ -135,7 +137,7 @@ public class Aviao extends Thread {
 		if(!chegouDestino){
 			// ver pontuacao
 		}
-		Celula celula = this.espaco.getCelula(ponto);
+		Celula celula = this.espaco.getCelula(pontoAviao);
 		celula.sairDaCelula();
 
 		//tenho de remover este aviao e fazer update pq ja nao volta a entrar naquele while
@@ -147,7 +149,7 @@ public class Aviao extends Thread {
 
 	private void chegouAoDestino() {
 		chegouDestino = true;
-		Aeroporto aeroporto = espaco.getCelula(ponto).getAeroporto(); // se for preciso mete se um if para nao dar erro
+		Aeroporto aeroporto = espaco.getCelula(pontoAviao).getAeroporto(); // se for preciso mete se um if para nao dar erro
 		aeroporto.aterraAviao();
 
 		//falta tratar da pontuacao
@@ -170,7 +172,7 @@ public class Aviao extends Thread {
 	}
 
 	public Point getPonto() {
-		return ponto;
+		return pontoAviao;
 	}
 
 	public boolean estaVisivel(){
@@ -178,16 +180,16 @@ public class Aviao extends Thread {
 	}
 
 	public void direcaoRotacao(){
-		if(proxPonto.x > ponto.x){
+		if(proxPonto.x > pontoAviao.x){
 			rotacao = 90;
 		}
-		if(ponto.x > proxPonto.x){
+		if(pontoAviao.x > proxPonto.x){
 			rotacao = 270;
 		}
-		if(proxPonto.y > ponto.y){
+		if(proxPonto.y > pontoAviao.y){
 			rotacao = 180;
 		}
-		if(ponto.y > proxPonto.y){
+		if(pontoAviao.y > proxPonto.y){
 			rotacao = 0;
 		}
 	}
