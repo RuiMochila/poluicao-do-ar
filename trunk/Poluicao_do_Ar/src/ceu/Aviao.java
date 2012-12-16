@@ -71,7 +71,7 @@ public class Aviao extends Thread {
 			termina();
 
 		} catch (InterruptedException e) {
-			e.printStackTrace();
+			// sysout a dizer terminou
 		}
 	}
 
