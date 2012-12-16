@@ -32,8 +32,10 @@ public class ControladorJogo {
 	private Aviao aviaoParado;
 
 	public void criarJogoPorFicheiro(){
-		try {
-			Scanner ficheiro = new Scanner(new FileReader("aeroportos.txt"));
+//		try {
+//			Scanner ficheiro = new Scanner(new FileReader("aeroportos.txt"));
+			Scanner ficheiro = new Scanner(getClass().getResourceAsStream(
+					"/aeroportos.txt"));
 			if(ficheiro.hasNext()){
 				this.numColunas = ficheiro.nextInt();
 				this.numLinhas = ficheiro.nextInt();
@@ -54,9 +56,9 @@ public class ControladorJogo {
 
 			}
 			ficheiro.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//		}
 		initGui();
 	}
 
@@ -109,8 +111,10 @@ public class ControladorJogo {
 	}
 
 	public void criarJogoTeste(){
-		try {
-			Scanner ficheiro = new Scanner(new FileReader("situacaoTeste"));
+//		try {
+//			Scanner ficheiro = new Scanner(new FileReader("situacaoTeste.txt"));
+			Scanner ficheiro = new Scanner(getClass().getResourceAsStream(
+					"/aeroportos.txt"));
 			if(ficheiro.hasNext()){
 				this.numColunas = ficheiro.nextInt();
 				this.numLinhas = ficheiro.nextInt();
@@ -130,9 +134,9 @@ public class ControladorJogo {
 			}
 			ficheiro.close();
 			
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//		}
 		initGui();
 	}
 	
