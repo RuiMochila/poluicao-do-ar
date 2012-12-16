@@ -30,8 +30,6 @@ public class AviaoGrafico {
 
 		desenhaImagemAviao(g2, aviao);
 
-		//continuar metodo
-
 	}
 
 	private void desenhaImagemAviao(Graphics2D g2, Aviao aviao) {
