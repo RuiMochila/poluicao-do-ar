@@ -85,8 +85,14 @@ public class ControladorJogo {
 							posLivre = true;
 						}
 					}
-				}
+				}	
+				Point novoPonto = new Point(x,y);
+				Aeroporto aeroporto = new Aeroporto(this, espacoAereo, novoPonto);
+				espacoAereo.getCelula(novoPonto).setAeroporto(aeroporto);
+				aeroportos.add(aeroporto);
 			}
+		
+			
 		}
 	}
 	
