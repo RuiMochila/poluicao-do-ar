@@ -75,15 +75,15 @@ public class ControladorJogo {
 				x = r.nextInt(numColunas);
 				y = r.nextInt(numLinhas); //no maximo ate o num Linhas
 				for(Aeroporto aeroporto: aeroportos){
-					if(aeroporto.getPonto().x == x && aeroporto.getPonto().y == y){
-						celulaOcupada = true;
+					if(!(aeroporto.getPonto().x == x && aeroporto.getPonto().y == y)){
+						celulaOcupada = false;
 					}
 					for(Aeroporto aeroporto2: aeroportos){
-						if(aeroporto2.getPonto().x == x - 1 ||
+						if(!(aeroporto2.getPonto().x == x - 1 ||
 								aeroporto2.getPonto().x == x + 1 ||
 								aeroporto2.getPonto().x == y - 1 ||
-								aeroporto2.getPonto().x == y + 1){
-							celulasVizinhasOcupadas = true;
+								aeroporto2.getPonto().x == y + 1)){
+							celulasVizinhasOcupadas = false;
 						}
 					}
 				}	
