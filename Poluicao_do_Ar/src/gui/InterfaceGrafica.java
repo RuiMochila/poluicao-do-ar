@@ -50,7 +50,7 @@ public class InterfaceGrafica extends JFrame { // o que e que tenho de fazer aqu
 			}
 		});
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		pack();
 		setResizable(false);
 		setVisible(true);
@@ -85,7 +85,7 @@ public class InterfaceGrafica extends JFrame { // o que e que tenho de fazer aqu
 				@Override
 				public void mousePressed(MouseEvent e) {
 					int x = (int)Math.floor(e.getX()/dimCelula);
-					int y = (int)Math.floor(e.getX()/dimCelula);
+					int y = (int)Math.floor(e.getY()/dimCelula);
 
 					controlador.click(new Point(x,y));
 

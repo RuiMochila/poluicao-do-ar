@@ -29,7 +29,25 @@ public class AviaoGrafico {
 		Graphics2D g2 = (Graphics2D) g;
 
 		desenhaImagemAviao(g2, aviao);
+		
+		if(aviao.estaEsperaDestinoIntermedio()){
+			desenhaBandeira(g2, aviao);
+		}
 
+	}
+
+	private void desenhaBandeira(Graphics2D g2, Aviao aviao) {
+		double dimCelula = controlador.dimCelula;
+		BufferedImage bandeira;
+		try {
+			bandeira = ImageIO.read(new File("imagens/flag.png"));
+			g2.drawImage(bandeira, (int)(aviao.getPontoIntermedio().x * dimCelula + 1),(int)( aviao.getPontoIntermedio().y * dimCelula +1), (int)(dimCelula -1), (int)(dimCelula -1), null);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	private void desenhaImagemAviao(Graphics2D g2, Aviao aviao) {

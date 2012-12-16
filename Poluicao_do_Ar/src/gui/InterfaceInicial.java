@@ -80,7 +80,7 @@ public class InterfaceInicial extends JFrame{
 		
 		
 			
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		setVisible(true);
 		
