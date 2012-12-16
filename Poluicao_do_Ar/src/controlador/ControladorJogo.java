@@ -71,7 +71,7 @@ public class ControladorJogo {
 			boolean celulaOcupada = true;
 			boolean celulasVizinhasOcupadas = true;//ver se pode ser inicializado aqui
 			
-			while(celulaOcupada && celulasVizinhasOcupadas){
+			while(celulaOcupada || celulasVizinhasOcupadas){ // se A ou B acontecer eu quero ver de outro ponto
 				x = r.nextInt(numColunas);
 				y = r.nextInt(numLinhas); //no maximo ate o num Linhas
 				for(Aeroporto aeroporto: aeroportos){
@@ -89,14 +89,16 @@ public class ControladorJogo {
 						}
 					}
 				}	
-				Point novoPonto = new Point(x,y);
-				Aeroporto aeroporto = new Aeroporto(this, espacoAereo, novoPonto);
-				espacoAereo.getCelula(novoPonto).setAeroporto(aeroporto);
-				aeroportos.add(aeroporto);
 			}
-		
-			
+			Point novoPonto = new Point(x,y);
+			Aeroporto aeroporto = new Aeroporto(this, espacoAereo, novoPonto);
+			espacoAereo.getCelula(novoPonto).setAeroporto(aeroporto);
+			aeroportos.add(aeroporto);	
 		}
+	}
+
+	public void criarJogoTeste(){
+		
 	}
 	
 	public void click(Point ponto){
