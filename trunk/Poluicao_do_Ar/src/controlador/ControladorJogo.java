@@ -53,6 +53,7 @@ public class ControladorJogo {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		initGui();
 	}
 
 
@@ -97,6 +98,7 @@ public class ControladorJogo {
 			espacoAereo.getCelula(novoPonto).setAeroporto(aeroporto);
 			aeroportos.add(aeroporto);	
 		}
+		initGui();
 	}
 
 	public void criarJogoTeste(){
@@ -123,6 +125,7 @@ public class ControladorJogo {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		initGui();
 	}
 	
 	public void click(Point ponto){

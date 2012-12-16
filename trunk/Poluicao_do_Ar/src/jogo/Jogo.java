@@ -1,5 +1,6 @@
 package jogo;
 
+import gui.InterfaceInicial;
 import controlador.ControladorJogo;
 
 public class Jogo {
@@ -8,9 +9,7 @@ public class Jogo {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		ControladorJogo controlador = new ControladorJogo();
-		controlador.criarJogoPorFicheiro();
-		controlador.initGui();
+		new InterfaceInicial();
 
 	}
 
