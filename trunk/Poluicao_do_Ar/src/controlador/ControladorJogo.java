@@ -74,9 +74,11 @@ public class ControladorJogo {
 			boolean celulaVazia = false;
 			boolean celulasVizinhasVazias = false;//ver se pode ser inicializado aqui
 			
-			while(!(celulaVazia || celulasVizinhasVazias)){ // se A ou B acontecer eu quero ver de outro ponto
+			while(!celulaVazia || !celulasVizinhasVazias){ // se A ou B acontecer eu quero ver de outro ponto
 				x = r.nextInt(numColunas);
 				y = r.nextInt(numLinhas); //no maximo ate o num Linhas
+				celulaVazia=true;
+				celulasVizinhasVazias=true;
 				for(Aeroporto aeroporto: aeroportos){
 					if(aeroporto.getPonto().x == x && aeroporto.getPonto().y == y){
 						celulaVazia = false;
@@ -86,8 +88,8 @@ public class ControladorJogo {
 					for(Aeroporto aeroporto2: copiaAeroportos){
 						if(aeroporto2.getPonto().x == x - 1 ||
 								aeroporto2.getPonto().x == x + 1 ||
-								aeroporto2.getPonto().x == y - 1 ||
-								aeroporto2.getPonto().x == y + 1){
+								aeroporto2.getPonto().y == y - 1 ||
+								aeroporto2.getPonto().y == y + 1){
 							celulasVizinhasVazias = false;
 						}
 					}
