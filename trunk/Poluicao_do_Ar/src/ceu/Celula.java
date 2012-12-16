@@ -23,11 +23,11 @@ public class Celula {
 	}
 
 	/**
-	 * Método sincronizado que permite a um avião ocupar uma celula.
-	 * O acesso à celula é gerido recorrendo a um lock. 
+	 * Metodo sincronizado que permite a um aviao ocupar uma celula.
+	 * O acesso a celula e gerido recorrendo a um lock. 
 	 * Se devolver true significa que bloquiei a celula em minha posse, 
-	 * e que sou agora o ocupante. Se devolver false significa que nao consegui
-	 * ter acesso e que outro avião a detem.
+	 * e que sou agora ocupante da celula. Se devolver false significa que nao consegui
+	 * ter acesso e que outro avoao a detem.
 	 * 
 	 * @param ocupanteCelula
 	 * @return
@@ -44,8 +44,8 @@ public class Celula {
 	}
 	
 	/**
-	 * Método sincronizado para libertar a celula.
-	 * Se o evocador deste método detinha controlo da celula liberta-a,
+	 * Metodo sincronizado para libertar a celula.
+	 * Se o evocador deste metodo detinha controlo da celula liberta-a,
 	 * e a celula deixa de ter um ocupante, podendo ser ocupada por outro aviao.
 	 *  
 	 */
@@ -58,7 +58,7 @@ public class Celula {
 	}
 	
 	/**
-	 * Método que devolve true se a celula estiver ocupada, false se estiver livre.
+	 * Metodo que devolve true se a celula estiver ocupada, false se estiver livre.
 	 * @return
 	 */
 	public boolean celulaOcupada(){
@@ -75,7 +75,7 @@ public class Celula {
 	}
 	
 	/**
-	 * Devolve o aeroporto se existir um nesta celula, caso contrário devolve null
+	 * Devolve o aeroporto se existir um nesta celula, caso contrario devolve null
 	 * @return
 	 */
 	public Aeroporto getAeroporto() { 
@@ -91,7 +91,7 @@ public class Celula {
 	}
 	
 	/**
-	 * Devolve o aviao ocupante desta celula se existir algum, caso contrário devolve null
+	 * Devolve o aviao ocupante desta celula se existir algum, caso contrario devolve null
 	 * @return
 	 */
 	public Aviao getOcupanteCelula() {
