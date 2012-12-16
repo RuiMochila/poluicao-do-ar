@@ -92,4 +92,13 @@ public class ControladorJogo {
 	public ConcurrentLinkedQueue<Aviao> getAvioes() {
 		return avioes;
 	}
+	
+	public void terminaJogo(){
+		for(Aeroporto aeroporto: aeroportos){
+			aeroporto.interrupt();
+		}
+		for(Aviao aviao: avioes){
+			aviao.interrupt();
+		}	
+	}
 }
