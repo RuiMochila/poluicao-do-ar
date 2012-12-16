@@ -71,24 +71,24 @@ public class ControladorJogo {
 			Random r = new Random();
 			int x = 0;
 			int y = 0;
-			boolean celulaOcupada = true;
-			boolean celulasVizinhasOcupadas = true;//ver se pode ser inicializado aqui
+			boolean celulaVazia = false;
+			boolean celulasVizinhasVazias = false;//ver se pode ser inicializado aqui
 			
-			while(celulaOcupada || celulasVizinhasOcupadas){ // se A ou B acontecer eu quero ver de outro ponto
+			while(!(celulaVazia || celulasVizinhasVazias)){ // se A ou B acontecer eu quero ver de outro ponto
 				x = r.nextInt(numColunas);
 				y = r.nextInt(numLinhas); //no maximo ate o num Linhas
 				for(Aeroporto aeroporto: aeroportos){
-					if(!(aeroporto.getPonto().x == x && aeroporto.getPonto().y == y)){
-						celulaOcupada = false;
+					if(aeroporto.getPonto().x == x && aeroporto.getPonto().y == y){
+						celulaVazia = false;
 					}
 					
 					ConcurrentLinkedQueue<Aeroporto> copiaAeroportos = new ConcurrentLinkedQueue<Aeroporto>(aeroportos); 
 					for(Aeroporto aeroporto2: copiaAeroportos){
-						if(!(aeroporto2.getPonto().x == x - 1 ||
+						if(aeroporto2.getPonto().x == x - 1 ||
 								aeroporto2.getPonto().x == x + 1 ||
 								aeroporto2.getPonto().x == y - 1 ||
-								aeroporto2.getPonto().x == y + 1)){
-							celulasVizinhasOcupadas = false;
+								aeroporto2.getPonto().x == y + 1){
+							celulasVizinhasVazias = false;
 						}
 					}
 				}	
@@ -103,7 +103,7 @@ public class ControladorJogo {
 
 	public void criarJogoTeste(){
 		try {
-			Scanner ficheiro = new Scanner(new FileReader("situacaoTeste.txt"));
+			Scanner ficheiro = new Scanner(new FileReader("situacaoTeste"));
 			if(ficheiro.hasNext()){
 				this.numColunas = ficheiro.nextInt();
 				this.numLinhas = ficheiro.nextInt();
