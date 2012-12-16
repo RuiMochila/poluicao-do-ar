@@ -68,21 +68,22 @@ public class ControladorJogo {
 			Random r = new Random();
 			int x;
 			int y;
-			boolean posLivre = true; //ver se pode ser inicializado aqui
+			boolean celulaOcupada = true;
+			boolean celulasVizinhasOcupadas = true;//ver se pode ser inicializado aqui
 			
-			while(!posLivre){
+			while(celulaOcupada && celulasVizinhasOcupadas){
 				x = r.nextInt(numColunas);
 				y = r.nextInt(numLinhas); //no maximo ate o num Linhas
 				for(Aeroporto aeroporto: aeroportos){
-					if(!(aeroporto.getPonto().x == x && aeroporto.getPonto().y == y)){
-						posLivre = true;
+					if(aeroporto.getPonto().x == x && aeroporto.getPonto().y == y){
+						celulaOcupada = true;
 					}
 					for(Aeroporto aeroporto2: aeroportos){
-						if(!(aeroporto2.getPonto().x == x - 1 ||
+						if(aeroporto2.getPonto().x == x - 1 ||
 								aeroporto2.getPonto().x == x + 1 ||
 								aeroporto2.getPonto().x == y - 1 ||
-								aeroporto2.getPonto().x == y + 1)){
-							posLivre = true;
+								aeroporto2.getPonto().x == y + 1){
+							celulasVizinhasOcupadas = true;
 						}
 					}
 				}	
