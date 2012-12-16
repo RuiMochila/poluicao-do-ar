@@ -40,7 +40,13 @@ public class AviaoGrafico {
 			Point ponto = aviao.getPonto();
 			double dimCelula = ControladorJogo.dimCelula; 
 			BufferedImage imagem;
-			imagem = ImageIO.read(new File("imagens/aviao.png"));
+			if(aviao.getCombustivelActual() < aviao.getCombustivelInicial()*aviao.RESERVA){
+				imagem = ImageIO.read(new File("imagens/aviao_vermelho.png"));
+			}
+			else{
+				imagem = ImageIO.read(new File("imagens/aviao.png"));	
+			}
+			
 			
 			double centroImagemX = imagem.getWidth() / 2; 
 			double centroImagemY = imagem.getHeight() / 2;

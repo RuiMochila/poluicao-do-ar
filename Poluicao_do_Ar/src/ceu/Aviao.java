@@ -10,12 +10,15 @@ public class Aviao extends Thread {
 
 	private static final int CONSUMO_COMBUSTIVEL = 10;
 	private static final long SLEEP_TIME = 1000;
-	private static final double RESERVA = 0.20;
+	public static final double RESERVA = 0.20;
 	private ControladorJogo controlador;
 	private EspacoAereo espaco;
+	private Point pontoIntermedio;
 	private Point pontoAviao;
 	private Point proxPonto;
 	private Celula proximaCelula;
+
+
 	private int rotacao;
 	private boolean visivel = false;
 
@@ -179,12 +182,16 @@ public class Aviao extends Thread {
 		return visivel;
 	}
 	
-	public boolean estaEmPausa(){
+	public boolean estaEsperaComando(){
 		return aviaoEmPausa;
 	}
 	
 	public void acabaPausa(){
 		aviaoEmPausa = false;
+	}
+	
+	public void comecaPausa(){
+		aviaoEmPausa = true;
 	}
 
 	public void direcaoRotacao(){
@@ -207,8 +214,8 @@ public class Aviao extends Thread {
 	}
 	
 	public void abastece(int combustivelNecessarioParaViajar) {
-		combustivelInicial = (int) (combustivelNecessarioParaViajar * (1 + RESERVA) * CONSUMO_COMBUSTIVEL);
-		combustivelActual = combustivelInicial; 
+		this.combustivelInicial = (int) (combustivelNecessarioParaViajar * (1 + RESERVA) * CONSUMO_COMBUSTIVEL);
+		this.combustivelActual = combustivelInicial; 
 	}
 	
 	public int obtemCombustivelParaDestino(){ // ve quantas celulas tem de viajar ate o destino
@@ -217,5 +224,19 @@ public class Aviao extends Thread {
 		}
 		return 0;
 	}
+	
+	public void setDestinoIntermedio(Point pontoIntermedio){
+		this.pontoIntermedio = pontoIntermedio;
+		destinoIntermedio = true;
+		//ver pontuacao;
+		setDestino(pontoIntermedio);	
+	}
+	
+	public int getCombustivelActual() {
+		return combustivelActual;
+	}
 
+	public int getCombustivelInicial() {
+		return combustivelInicial;
+	}
 }
