@@ -21,6 +21,7 @@ public class InterfaceInicial extends JFrame{
 	public InterfaceInicial(){
 		setTitle("Controlador Aereo");
 
+		setSize(500, 500);
 		setLayout(new BorderLayout());
 		
 		JButton botaoTeste = new JButton("Situação de teste");
@@ -65,10 +66,10 @@ public class InterfaceInicial extends JFrame{
 		painelBotoes.add(botaoFicheiro);
 		getContentPane().add(painelBotoes, BorderLayout.NORTH);
 
-		JPanel painelAluno = new JPanel(new GridLayout(3,1));
-		JLabel nome = new JLabel("Débora Gonçalves");
+		JPanel painelAluno = new JPanel(new FlowLayout());
+		JLabel nome = new JLabel("Debora Goncalves");
 		JLabel numero = new JLabel("33957");
-		JLabel curso = new JLabel("Informática e Gestão de Empresas");
+		JLabel curso = new JLabel("Informatica e Gestao de Empresas");
 		getContentPane().add(painelAluno, BorderLayout.CENTER);
 		
 		getContentPane().add(nome);
@@ -77,7 +78,6 @@ public class InterfaceInicial extends JFrame{
 		
 			
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		pack();
 		setResizable(false);
 		setVisible(true);
 		
