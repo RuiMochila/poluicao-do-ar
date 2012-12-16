@@ -4,6 +4,7 @@ package controlador;
 import java.awt.Point;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -53,6 +54,42 @@ public class ControladorJogo {
 	}
 
 
+	public void criarJogoAleatorio(int numColunas, int numLinhas, int numAeroportos){
+		//asserts e erros - tratar disso
+		
+		this.numColunas = numColunas;
+		this.numLinhas = numLinhas;
+		this.espacoAereo = new EspacoAereo(numColunas, numLinhas);
+		
+		aeroportos = new ConcurrentLinkedQueue<Aeroporto>();
+		avioes = new ConcurrentLinkedQueue<Aviao>();
+
+		for(int i = 0; i < numAeroportos; i++){
+			Random r = new Random();
+			int x;
+			int y;
+			boolean posLivre = true; //ver se pode ser inicializado aqui
+			
+			while(!posLivre){
+				x = r.nextInt(numColunas);
+				y = r.nextInt(numLinhas); //no maximo ate o num Linhas
+				for(Aeroporto aeroporto: aeroportos){
+					if(!(aeroporto.getPonto().x == x && aeroporto.getPonto().y == y)){
+						posLivre = true;
+					}
+					for(Aeroporto aeroporto2: aeroportos){
+						if(!(aeroporto2.getPonto().x == x - 1 ||
+								aeroporto2.getPonto().x == x + 1 ||
+								aeroporto2.getPonto().x == y - 1 ||
+								aeroporto2.getPonto().x == y + 1)){
+							posLivre = true;
+						}
+					}
+				}
+			}
+		}
+	}
+	
 	public void click(Point ponto){
 
 		Aviao aviao = espacoAereo.getCelula(ponto).getOcupanteCelula();
