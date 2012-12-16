@@ -66,8 +66,8 @@ public class ControladorJogo {
 
 		for(int i = 0; i < numAeroportos; i++){
 			Random r = new Random();
-			int x;
-			int y;
+			int x = 0;
+			int y = 0;
 			boolean celulaOcupada = true;
 			boolean celulasVizinhasOcupadas = true;//ver se pode ser inicializado aqui
 			
