@@ -23,7 +23,7 @@ public class Aeroporto extends Thread{
 		
 		avioesPorLancar = new AtomicInteger(1);
 		Random r = new Random(); // tem de ser lancado sempre pelo menos um aviao
-		int numAvioes = r.nextInt(5); // 0 a 4
+		int numAvioes = r.nextInt(3); // 0 a 2
 		avioesPorLancar.addAndGet(numAvioes);
 	}
 	
